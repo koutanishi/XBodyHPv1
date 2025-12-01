@@ -1,0 +1,762 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X BODY Labo 府中店 | 20分で結果を出す全身EMSトレーニング</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        /* ヘッダー */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #d32f2f;
+        }
+        
+        .cta-btn {
+            background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+            color: #fff !important;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+        }
+        
+        .cta-btn-large {
+            padding: 16px 40px;
+            font-size: 16px;
+        }
+        
+        .cta-btn-secondary {
+            background: #fff;
+            color: #d32f2f !important;
+            border: 2px solid #d32f2f;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.15);
+        }
+        
+        /* セクション共通 */
+        section {
+            padding: 80px 20px;
+        }
+        
+        .section-gray {
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #222;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #d32f2f, #ff6b6b);
+            border-radius: 2px;
+        }
+        
+        /* ファーストビュー */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .hero .sub-copy {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+        }
+        
+        .usp-list {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+        
+        .usp-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        /* 悩み共感 */
+        .concerns-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .concern-item {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #d32f2f;
+        }
+        
+        .concern-item::before {
+            content: '✓';
+            color: #d32f2f;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .closing-text {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 40px 0 30px;
+            color: #d32f2f;
+        }
+        
+        /* X BODYとは */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        
+        .feature-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* 効果 */
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .benefit-item {
+            background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #f0f0f0;
+            transition: border-color 0.3s;
+        }
+        
+        .benefit-item:hover {
+            border-color: #d32f2f;
+        }
+        
+        .benefit-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 10px;
+        }
+        
+        /* Why EMS */
+        .why-ems-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        
+        .why-ems-content h3 {
+            font-size: 22px;
+            color: #d32f2f;
+            margin: 30px 0 15px 0;
+        }
+        
+        .why-ems-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .why-ems-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .why-ems-content li {
+            padding: 12px 0 12px 30px;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .why-ems-content li:last-child {
+            border-bottom: none;
+        }
+        
+        .why-ems-content li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #d32f2f;
+            font-size: 12px;
+        }
+        
+        /* コース料金 */
+        .pricing-card {
+            background: #fff;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            border-top: 5px solid #d32f2f;
+        }
+        
+        .pricing-title {
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #222;
+        }
+        
+        .pricing-details {
+            margin-bottom: 20px;
+        }
+        
+        .pricing-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .pricing-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .pricing-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .pricing-note {
+            background: #fff3f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            color: #c62828;
+            font-weight: bold;
+        }
+        
+        /* フロー */
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .flow-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #d32f2f, #ff6b6b);
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #222;
+        }
+        
+        .step-desc {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* お客様の声 */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .testimonial-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d32f2f, #ff6b6b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .testimonial-info {
+            flex: 1;
+        }
+        
+        .testimonial-name {
+            font-weight: bold;
+            color: #222;
+        }
+        
+        .testimonial-attr {
+            font-size: 13px;
+            color: #999;
+        }
+        
+        .testimonial-text {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .faq-item {
+            background: #fff;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            background: #f9f9f9;
+            padding: 20px 25px;
+            font-weight: bold;
+            color: #222;
+            border-left: 4px solid #d32f2f;
+        }
+        
+        .faq-question::before {
+            content: 'Q. ';
+            color: #d32f2f;
+            font-size: 18px;
+            margin-right: 8px;
+        }
+        
+        .faq-answer {
+            padding: 20px 25px;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .faq-answer::before {
+            content: 'A. ';
+            color: #666;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        /* アクセス */
+        .access-info {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .info-row {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #d32f2f;
+            width: 120px;
+            flex-shrink: 0;
+        }
+        
+        .info-value {
+            flex: 1;
+            color: #333;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background: #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            margin-top: 30px;
+        }
+        
+        /* フッター */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+        
+        .footer-tagline {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+        
+        .footer-info {
+            margin: 30px 0;
+            color: #bbb;
+            line-height: 2;
+        }
+        
+        .footer-social {
+            margin: 30px 0;
+        }
+        
+        .footer-social a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-social a:hover {
+            color: #d32f2f;
+        }
+        
+        .footer-cta {
+            margin: 40px 0 30px;
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 13px;
+            color: #777;
+        }
+        
+        /* CTA中央配置 */
+        .cta-center {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .logo {
+                font-size: 18px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero .sub-copy {
+                font-size: 16px;
+            }
+            
+            h2 {
+                font-size: 26px;
+            }
+            
+            section {
+                padding: 50px 15px;
+            }
+            
+            .usp-list {
+                gap: 15px;
+            }
+            
+            .usp-item {
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid,
+            .benefits-list,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .why-ems-content,
+            .access-info {
+                padding: 25px;
+            }
+            
+            .pricing-card {
+                padding: 25px;
+            }
+            
+            .info-row {
+                flex-direction: column;
+            }
+            
+            .info-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .flow-step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+    <div class="header-container">
+        <div class="logo">X BODY Labo 府中店</div>
+        <nav>
+            <a href="#first">初めての方へ</a>
+            <a href="#what">X BODYとは</a>
+            <a href="#price">コース・料金</a>
+            <a href="#voice">お客様の声</a>
+            <a href="#access">アクセス</a>
+            <a href="https://lin.ee/p3oSjwk" class="cta-btn">LINEで体験予約する</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ファーストビュー -->
+<section class="hero" id="first">
+    <div class="container">
+        <h1>たった20分で、ジム3〜4時間分の効果。<br>全身EMSトレーニング専門ジム。</h1>
+        <p class="sub-copy">世界55カ国で選ばれる「X BODY」が府中に。<br>忙しくても結果にこだわりたいあなたへ。</p>
+        
+        <div class="usp-list">
+            <div class="usp-item">⚡ 20分でOK</div>
+            <div class="usp-item">💪 全身24箇所同時アプローチ</div>
+            <div class="usp-item">🔥 ダイエット／筋力UP／体幹強化</div>
+            <div class="usp-item">🩺 肩こり・腰痛ケアにも</div>
+            <div class="usp-item">👜 手ぶらで通える</div>
+        </div>
+        
+        <div class="hero-cta">
+            <a href="https://lin.ee/p3oSjwk" class="cta-btn cta-btn-large">LINEで体験予約する</a>
+            <a href="https://lin.ee/p3oSjwk" class="cta-btn cta-btn-large cta-btn-secondary">LINEで質問してみる</a>
+        </div>
+    </div>
+</section>
+
+<!-- 悩み共感セクション -->
+<section class="section-gray">
+    <div class="container">
+        <h2>こんなお悩みありませんか？</h2>
+        
+        <div class="concerns-list">
+            <div class="concern-item">運動が続かない、三日坊主になってしまう</div>
+            <div class="concern-item">仕事や家事で忙しく、ジムに通う時間がない</div>
+            <div class="concern-item">自己流でダイエットしても成果が出ない</div>
+            <div class="concern-item">年齢とともに代謝が落ちてきた</div>
+            <div class="concern-item">肩こり・腰痛に悩まされている</div>
+            <div class="concern-item">重いウェイトトレーニングは不安</div>
+        </div>
+        
+        <p class="closing-text">そんな方のために、X BODY Labo 府中店があります。</p>
+        
+        <div class="cta-center">
+            <a href="https://lin.ee/p3oSjwk" class="cta-btn">自分に合うかLINEで相談する</a>
+        </div>
+    </div>
+</section>
+
+<!-- X BODYとは -->
+<section id="what">
+    <div class="container">
+        <h2>X BODYとは？</h2>
+        
+        <p style="text-align: center; font-size: 18px; margin-bottom: 40px; line-height: 1.8;">
+            X BODYは、先端技術から生まれた<strong style="color: #d32f2f;">世界55カ国で利用されている全身型EMSトレーニングシステム</strong>です。<br>
+            専用スーツを着用することで、<strong>
